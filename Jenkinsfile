@@ -1,7 +1,11 @@
 pipeline {
     agent any
     options { disableConcurrentBuilds() }
+    library 
     stages {
+        stage('Library') {
+            library identifier: "jenkinstest@master", retriever: modernSCM(github(credentialsId: 'github_ssh', repoOwner: 'candiedcode', repository: 'Jenkins-Test'))
+        }
         stage('sleep'){
             steps {
                 //echo BRANCH_NAME
