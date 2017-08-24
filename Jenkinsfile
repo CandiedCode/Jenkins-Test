@@ -7,6 +7,13 @@ pipeline {
                 library identifier: "jenkinstest@master", retriever: modernSCM(github(credentialsId: 'github_ssh', repoOwner: 'candiedcode', repository: 'Jenkins-Test'))
             }
         }
+        testingNode(label: any){
+            stage('Build') {
+                steps {
+                    echo 'Building..'
+                }
+            }
+        }
         stage('sleep'){
             steps {
                 //echo BRANCH_NAME
