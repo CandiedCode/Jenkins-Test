@@ -3,7 +3,9 @@ pipeline {
     options { disableConcurrentBuilds() }
     stages {
         stage('Library') {
-            library identifier: "jenkinstest@master", retriever: modernSCM(github(credentialsId: 'github_ssh', repoOwner: 'candiedcode', repository: 'Jenkins-Test'))
+            steps {
+                library identifier: "jenkinstest@master", retriever: modernSCM(github(credentialsId: 'github_ssh', repoOwner: 'candiedcode', repository: 'Jenkins-Test'))
+            }
         }
         stage('sleep'){
             steps {
