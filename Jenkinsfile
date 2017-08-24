@@ -1,7 +1,14 @@
 pipeline {
     agent any
-
+    options { disableConcurrentBuilds() }
     stages {
+        stage('sleep'){
+            steps {
+                //echo BRANCH_NAME
+                sh "echo $BRANCH_NAME"
+                sleep 5
+            }
+        }        
         stage('Workspace'){
             steps {
                 echo env.WORKSPACE
