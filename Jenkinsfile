@@ -1,10 +1,10 @@
 pipeline {
     agent any
-
+    options { disableConcurrentBuilds() }
     stages {
-        stage('checkout'){
+        stage('sleep'){
             steps {
-                checkout scm
+                sleep 30
             }
         }        
         stage('Workspace'){
