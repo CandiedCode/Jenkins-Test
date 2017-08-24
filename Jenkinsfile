@@ -4,8 +4,9 @@ pipeline {
     stages {
         stage('sleep'){
             steps {
-                echo BRANCH_NAME
-                sleep 30
+                //echo BRANCH_NAME
+                sh "echo $BRANCH_NAME"
+                sleep 5
             }
         }        
         stage('Workspace'){
