@@ -2,6 +2,11 @@ pipeline {
     agent any
 
     stages {
+        stage('checkout'){
+            steps {
+                checkout scm
+            }
+        }        
         stage('Workspace'){
             steps {
                 echo env.WORKSPACE
