@@ -2,6 +2,12 @@ pipeline {
     agent any
 
     stages {
+        stage('Workspace'){
+            steps {
+                echo env.WORKSPACE
+                echo pwd()
+            }
+        }
         stage('Build') {
             steps {
                 echo 'Building..'
