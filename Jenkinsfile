@@ -4,6 +4,7 @@ pipeline {
     stages {
         stage('sleep'){
             steps {
+                echo BRANCH_NAME
                 sleep 30
             }
         }        
