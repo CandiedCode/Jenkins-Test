@@ -8,7 +8,16 @@ pipeline {
                 sh "echo $BRANCH_NAME"
                 sleep 5
             }
-        }        
+        } 
+        when {
+            BRANCH != 'master' 
+            
+            stage('Workspace'){
+                steps {
+                    echo "this is not master"
+                }
+            }
+        }
         stage('Workspace'){
             steps {
                 echo env.WORKSPACE
