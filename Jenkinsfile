@@ -1,11 +1,15 @@
+def utils = new com.solarwinds.Utils()
+
 node {
-	if (env.BRANCH_NAME == 'master') {
+	if (utils.branchMapToEnvironment.keySet().contains(env.BRANCH_NAME){
 		stage('Master Example') {
-			echo 'I only execute on the master branch'
+			echo utils.isBlue(env.BRANCH_NAME)
+			echo utils.isGreen(env.BRANCH_NAME)
 		}
 	} else {
-	   stage('Not Master Example') {
-			echo 'I only execute on not master branch'
+		stage('blah branch') {
+			echo blah
 		}
+
 	}
 }
