@@ -3,7 +3,7 @@ def branches = ['develop', 'staging', 'master'];
 
 def call(Map parameters = [:], body) {
 	if (!branches.contains(env.BRANCH_NAME)){
-		node {
+		node(label) {
 			body()
 		}
 	}

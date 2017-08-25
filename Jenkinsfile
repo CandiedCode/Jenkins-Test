@@ -8,6 +8,5 @@ library identifier: "jenkinstestlib@${env.BRANCH_NAME}", retriever: modernSCM(gi
 
 stage('echo'){
 	echo env.Branch_Name
-	echo library('jenkinstestlib').com.solarwinds.Utils.isBlue(env.BRANCH_NAME)
-//		echo utils.isGreen(env.BRANCH_NAME)
+	echo blueOrGreen()
 }
