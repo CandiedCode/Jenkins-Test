@@ -38,5 +38,3 @@ def isGreen(evironmentName){
 	echo output
 	output.contains('green')
 }
-
-return this
