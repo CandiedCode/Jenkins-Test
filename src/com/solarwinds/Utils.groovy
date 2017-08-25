@@ -19,13 +19,14 @@ def getCNAME(branchName){
 	command.execute().text
 }
 
-
+@NonCPS
 def isBlue(evironmentName){
 	output = getCNAME(environment)
 	echo output
 	output.contains('blue')
 }
 
+@NonCPS
 def isGreen(evironmentName){
 	output = getCNAME(environment)
 	echo output
