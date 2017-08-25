@@ -11,5 +11,5 @@ stage('echo'){
 }
 stage('output'){
 	def output = blueOrGreen()
-	echo output.getClass()
+	echo output.getClass().toString()
 }
