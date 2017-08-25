@@ -1,5 +1,5 @@
 
-
+//this requires staticMethod org.codehaus.groovy.runtime.DefaultGroovyMethods execute java.lang.String
 def getCNAME(environmentName){
 	def branchMapToEnvironment = [develop: 'test', staging: 'staging', master: ['emea', 'us', 'apac']]
 
@@ -13,7 +13,7 @@ def getCNAME(environmentName){
 	command.execute().text
 }
 
-def call(body) {
+def call() {
 	def environmentName = env.Branch_Name
 
 	if(environmentName == "develop"){
@@ -24,14 +24,10 @@ def call(body) {
 }
 
 def isBlue(environmentName){
-	output = getCNAME(environmentName)
-	echo output
-	output.contains('blue')
+	getCNAME(environmentName)
 }
 
 @NonCPS
 def isGreen(environmentName){
-	output = getCNAME(environmentName)
-	echo output
-	output.contains('green')
+	getCNAME(environmentName)
 }
