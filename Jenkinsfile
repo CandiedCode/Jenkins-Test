@@ -1,4 +1,7 @@
-def utils = new com.solarwinds.Utils()
+#!/usr/bin/groovy
+import com.solarwinds.Utils
+
+def utils = new Utils()
 
 
 stage('echo'){
