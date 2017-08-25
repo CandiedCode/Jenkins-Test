@@ -7,11 +7,7 @@ environment = [staging: 'arsn-stg-api.tst.system-monitor.com',
 		   us: 'checks-api.us.system-monitor.com',
 		   apac: 'checks-api.apac.system-monitor.com']
 
-def getCNAME(branchName){
-	if(environmentName == "develop"){
-		environmentName = 'testing'
-	}
-
+def getCNAME(environmentName){
 	command = "dig +noall +answer ${environment[environmentName]} CNAME +short".toString()
 	command.execute().text
 }
