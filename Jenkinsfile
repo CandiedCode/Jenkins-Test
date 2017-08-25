@@ -4,12 +4,11 @@ library identifier: "jenkinstestlib@${env.BRANCH_NAME}", retriever: modernSCM(gi
 
 
 //def utils = new Utils()
-
+def urls = libraryResource 'arsenalURLs.json'
 
 stage('echo'){
 	echo env.Branch_Name
 }
 stage('output'){
 	def output = blueOrGreen()
-	echo output.getClass().toString()
 }
