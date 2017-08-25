@@ -1,12 +1,13 @@
+branchMapToEnvironment = [develop: 'test', staging: 'staging', master: ['emea', 'us', 'apac']]
+
+
+environment = [staging: 'arsn-stg-api.tst.system-monitor.com',
+		   testing: 'arsn-testing-api.tst.system-monitor.com',
+		   emea: 'checks-api.emea.system-monitor.com',
+		   us: 'checks-api.us.system-monitor.com',
+		   apac: 'checks-api.apac.system-monitor.com']
+
 def getCNAME(branchName){
-	branchMapToEnvironment = [develop: 'test', staging: 'staging', master: ['emea', 'us', 'apac']]
-
-
-	environment = [staging: 'arsn-stg-api.tst.system-monitor.com',
-			   testing: 'arsn-testing-api.tst.system-monitor.com',
-			   emea: 'checks-api.emea.system-monitor.com',
-			   us: 'checks-api.us.system-monitor.com',
-			   apac: 'checks-api.apac.system-monitor.com']
 	if(environmentName == "develop"){
 		environmentName = 'testing'
 	}
@@ -26,14 +27,14 @@ def call(body) {
 }
 
 def isBlue(evironmentName){
-	output = getCNAME(environment)
+	output = getCNAME(evironmentName)
 	echo output
 	output.contains('blue')
 }
 
 @NonCPS
 def isGreen(evironmentName){
-	output = getCNAME(environment)
+	output = getCNAME(evironmentName)
 	echo output
 	output.contains('green')
 }
