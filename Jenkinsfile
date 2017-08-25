@@ -8,5 +8,8 @@ library identifier: "jenkinstestlib@${env.BRANCH_NAME}", retriever: modernSCM(gi
 
 stage('echo'){
 	echo env.Branch_Name
-	echo blueOrGreen()
+}
+stage('output'){
+	def output = blueOrGreen()
+	echo output.getClass()
 }
