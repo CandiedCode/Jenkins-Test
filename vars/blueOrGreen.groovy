@@ -1,26 +1,20 @@
-
+import groovy.json.JsonSlurper;
 //this requires staticMethod org.codehaus.groovy.runtime.DefaultGroovyMethods execute java.lang.String
-def getCNAME(environmentName){
-	def branchMapToEnvironment = [develop: 'test', staging: 'staging', master: ['emea', 'us', 'apac']]
 
-	def environment = [staging: 'arsn-stg-api.tst.system-monitor.com',
-					   testing: 'arsn-testing-api.tst.system-monitor.com',
-					   emea: 'checks-api.emea.system-monitor.com',
-					   us: 'checks-api.us.system-monitor.com',
-					   apac: 'checks-api.apac.system-monitor.com']
+def call(URLs, environmentName) {
+	def jsonSlurper = new JsonSlurper()
+	def urlResources = jsonSlurper.parseText(URLs)
 
-	command = "dig +noall +answer ${environment[environmentName]} CNAME +short".toString()
-	command.execute().text
-}
+	command = "dig +noall +answer ${urlResources[environmentName]} CNAME +short".toString()
+	output = command.execute().text
 
-def call() {
-	def environmentName = env.Branch_Name
-
-	if(environmentName == "develop"){
-		environmentName = 'testing'
+	if (output.contains('blue')){
+		'blue'
+	} else if (output.contains('green'){
+		'green'
+	} else {
+		'unknown'
 	}
-
-	isBlue(environmentName)
 }
 
 def isBlue(environmentName){
