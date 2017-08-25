@@ -8,20 +8,11 @@ def call(URLs, environmentName) {
 	command = "dig +noall +answer ${urlResources[environmentName]} CNAME +short".toString()
 	output = command.execute().text
 
-	if (output.contains('blue')){
+	if (output.contains('blue')) {
 		'blue'
-	} else if (output.contains('green'){
+	} else if (output.contains('green')) {
 		'green'
 	} else {
 		'unknown'
 	}
-}
-
-def isBlue(environmentName){
-	getCNAME(environmentName)
-}
-
-@NonCPS
-def isGreen(environmentName){
-	getCNAME(environmentName)
 }
