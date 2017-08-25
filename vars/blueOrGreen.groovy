@@ -12,7 +12,7 @@ def getCNAME(branchName){
 		environmentName = 'testing'
 	}
 
-	command = "dig +noall +answer ${environment[evironmentName]} CNAME +short".toString()
+	command = "dig +noall +answer ${environment[environmentName]} CNAME +short".toString()
 	command.execute().text
 }
 
@@ -26,15 +26,15 @@ def call(body) {
 	isBlue(environmentName)
 }
 
-def isBlue(evironmentName){
-	output = getCNAME(evironmentName)
+def isBlue(environmentName){
+	output = getCNAME(environmentName)
 	echo output
 	output.contains('blue')
 }
 
 @NonCPS
-def isGreen(evironmentName){
-	output = getCNAME(evironmentName)
+def isGreen(environmentName){
+	output = getCNAME(environmentName)
 	echo output
 	output.contains('green')
 }
