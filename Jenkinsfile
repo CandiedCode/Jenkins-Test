@@ -9,5 +9,5 @@ stage('echo'){
 	echo env.Branch_Name
 }
 stage('output'){
-	def output = blueOrGreen(env.BRANCH_NAME)
+	def output = blueOrGreen(urls, env.BRANCH_NAME)
 }
