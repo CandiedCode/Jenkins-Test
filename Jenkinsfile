@@ -2,7 +2,6 @@
 
 stage('Library') {
     library identifier: "jenkinstestlib@${env.BRANCH_NAME}", retriever: modernSCM(github(credentialsId: 'github_ssh', repoOwner: 'candiedcode', repository: 'Jenkins-Test'))
-    }
 }
 
 //def urls = parseJsonResource("arsenalURLs.json")
