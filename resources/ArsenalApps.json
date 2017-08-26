@@ -1,0 +1,14 @@
+{  
+   "apps":[  
+      "agent-notifier",
+      "check-service-notifier",
+      "device-status-consumer",
+      "kinesis-check-consumer",
+      "legacy-uploads-consumer",
+      "outages-consumer",
+      "results-consumer",
+      "search-consumer",
+      "webhook-notifier",
+      "api"
+   ]
+}
