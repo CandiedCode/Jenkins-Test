@@ -1,9 +1,9 @@
 #!/usr/bin/groovy
 
 def call(){
-	def environment
+	def environment = []
 
-	switch (env.BRANCH_NAME) {	
+	/*switch (env.BRANCH_NAME) {	
 		case: "develop":
 			environment = ["testing"]
 			break
@@ -16,7 +16,7 @@ def call(){
 		default:
 			[]
 			break
-	}
+	}*/
 
 	environment
 }
