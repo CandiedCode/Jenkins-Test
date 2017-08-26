@@ -14,5 +14,5 @@ node {
 }
 
 stage('Blue Or Green'){
-	echo blueOrGreen(urls, 'testing')
+	echo "test" //blueOrGreen(urls, 'testing')
 }
