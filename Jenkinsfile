@@ -3,27 +3,12 @@ import groovy.json.JsonSlurper;
 
 library identifier: "jenkinstestlib@${env.BRANCH_NAME}", retriever: modernSCM(github(credentialsId: 'candiedcode', repoOwner: 'candiedcode', repository: 'Jenkins-Test'))
 
-def urls = parseJsonResource("arsenalURLs.json")
-def apps = parseJsonResource("ArsenalApps.json")
+//def urls = parseJsonResource("arsenalURLs.json")
+//def apps = parseJsonResource("ArsenalApps.json")
 //def branchEnvironment = mapBranchToEnvironments()
 
 node {
 	stage('blah'){
 		checkout scm
 	}
-
-	stage('checkout'){
-		checkout scm
-		git branch: 'feature/move_to_jenkins ', credentialsId: 'candiedcode', url: 'git@github.com:logicnow/CheckProcessor.git'
-
-		sh "make build-image"
-	}	
-}
-
-stage('run unit tests'){
-		echo apps.apps
-}
-
-stage('output'){
-	def output = blueOrGreen(urls, env.BRANCH_NAME)
 }
