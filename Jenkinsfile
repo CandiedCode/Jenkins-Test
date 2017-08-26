@@ -12,3 +12,7 @@ node {
 		checkout scm
 	}
 }
+
+stage('Blue Or Green'){
+	echo blueOrGreen()
+}
