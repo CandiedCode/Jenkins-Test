@@ -14,7 +14,7 @@ def call(){
 			environment = ["apac", "us", "emea"]
 			break
 		default:
-			null
+			[]
 			break
 	}
 
