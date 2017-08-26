@@ -1,9 +1,9 @@
 #!/usr/bin/groovy
-import groovy.json.JsonSlurper;
+//import groovy.json.JsonSlurper;
 
-library identifier: "jenkinstestlib@${env.BRANCH_NAME}", retriever: modernSCM(github(credentialsId: 'candiedcode', repoOwner: 'candiedcode', repository: 'Jenkins-Test'))
+//library identifier: "jenkinstestlib@${env.BRANCH_NAME}", retriever: modernSCM(github(credentialsId: 'candiedcode', repoOwner: 'candiedcode', repository: 'Jenkins-Test'))
 
-def urls = parseJsonResource("arsenalURLs.json")
+//def urls = parseJsonResource("arsenalURLs.json")
 //def apps = parseJsonResource("ArsenalApps.json")
 //def branchEnvironment = mapBranchToEnvironments()
 
