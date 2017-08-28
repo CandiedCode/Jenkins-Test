@@ -1,14 +1,17 @@
 #!/usr/bin/groovy
-library identifier: "jenkinstestlib@${env.BRANCH_NAME}", retriever: modernSCM(github(credentialsId: 'github_ssh', repoOwner: 'candiedcode', repository: 'Jenkins-Test'))
 
-def urls = libraryResource "arsenalURLs.json"
-def arsenalApps = libraryResource "ArsenalApps.json"
-def branchEnvironment = mapBranchToEnvironments()
+stage('setup'){
+	//load shared library
+	library identifier: "jenkinstestlib@${env.BRANCH_NAME}", retriever: modernSCM(github(credentialsId: 'github_ssh', repoOwner: 'candiedcode', repository: 'Jenkins-Test'))
 
-stage('echo'){
-	echo urls
-	echo arsenalApps
-	echo branchEnvironment()
+	//load resources
+	def urls = libraryResource "arsenalURLs.json"
+	def arsenalApps = libraryResource "ArsenalApps.json"
+	urlMap = parseJsonResource(urls)
+	arsenalAppsMap = parseJsonResource(arsenalApps)
+
+	//get current environment info
+	output = mapBranchToEnvironments()
 }
 
 node {
@@ -35,6 +38,9 @@ node {
     }
 }
 
+
+/*def urls = jsonSlurper.parseText(libraryResource "arsenalURLs.json")
+//def apps = parseJsonResource(libraryResource resourceName "ArsenalApps.json")
 //def branchEnvironment = mapBranchToEnvironments()
 
 node {

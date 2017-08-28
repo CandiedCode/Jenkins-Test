@@ -1,7 +1,8 @@
 #!/usr/bin/groovy
 import groovy.json.JsonSlurper;
 
-def call(resourceName){
-	def jsonSlurper = new JsonSlurper()
-	jsonSlurper.parseText(resource)
+@NonCPS
+def call(jsonText) {
+  final slurper = new JsonSlurper()
+  return new HashMap<>(slurper.parseText(jsonText))
 }

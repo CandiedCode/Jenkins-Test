@@ -19,3 +19,26 @@ pipeline {
         }
     }
 }
+
+
+#!/usr/bin/groovy
+library identifier: "jenkinstestlib@${env.BRANCH_NAME}", retriever: modernSCM(github(credentialsId: 'github_ssh', repoOwner: 'candiedcode', repository: 'Jenkins-Test'))
+
+def urls = libraryResource "arsenalURLs.json" 
+def urlResource = parseJsonResource(uResource)
+def apps = libraryResource "ArsenalApps.json"
+def appResource = parseJsonResource("ArsenalApps.json")
+//def branchEnvironment = mapBranchToEnvironments()
+
+node {
+    stage('blah'){
+        checkout scm
+    }
+}
+
+stage('Blue Or Green'){
+    echo "test" //blueOrGreen(urls, 'testing')
+}
+stage('echo'){
+    echo urlResource
+}
