@@ -1,22 +1,22 @@
 #!/usr/bin/groovy
 
 def call(){
-	def environment = "test"
+	def environment
 
-	/*switch (env.BRANCH_NAME) {	
-		case: "develop":
+	switch (env.BRANCH_NAME) {	
+		case "develop":
 			environment = ["testing"]
 			break
-		case: "staging"
+		case "staging":
 			environment = ["staging"]
 			break
-		case: "master"
+		case "master":
 			environment = ["apac", "us", "emea"]
 			break
 		default:
-			[]
+			environment = []
 			break
-	}*/
+	}
 
 	environment
 }
