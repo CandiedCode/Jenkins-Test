@@ -1,6 +1,4 @@
-import groovy.json.JsonSlurper;
 //this requires staticMethod org.codehaus.groovy.runtime.DefaultGroovyMethods execute java.lang.String
-
 def call(URLs, environmentName) {
 	if(URLs.containsKey(environmentName))
 	{

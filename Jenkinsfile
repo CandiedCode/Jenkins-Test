@@ -1,9 +1,14 @@
 #!/usr/bin/groovy
+properties([
+	buildDiscarder(logRotator(artifactDaysToKeepStr: '', artifactNumToKeepStr: '', daysToKeepStr: '', numToKeepStr: '2')), disableConcurrentBuilds(), 
+	parameters([booleanParam(defaultValue: true, description: 'true or false', name: 'Test')])])
 
 stage('setup'){
+    echo "Hello ${params.Test}"
 	//load shared library
 	library identifier: "jenkinstestlib@${env.BRANCH_NAME}", retriever: modernSCM(github(credentialsId: 'github_ssh', repoOwner: 'candiedcode', repository: 'Jenkins-Test'))
 
+    env.BRANCH_NAME = "master"
 	//load resources
 	def urls = libraryResource "arsenalURLs.json"
 	def arsenalApps = libraryResource "ArsenalApps.json"
@@ -37,7 +42,7 @@ node {
 	}
 
 	if (environments.size() > 0) {
-		withCredentials([usernamePassword(credentialsId: dockerhub_candiedcode, usernameVariable: 'username', passwordVariable: 'password')]) {
+        withCredentials([usernamePassword(credentialsId: 'dockerhub', passwordVariable: 'password', usernameVariable: 'username')]) {	    
 			sh "echo make login DOCKERLOGIN=${username} DOCKERPASSWORD=${password}"
 		}
 
@@ -55,7 +60,14 @@ node {
 	}
 
 	stage('Clean') {
-		sh "make logout"
-    	sh "make clean"
+		sh "echo make logout"
+    	sh "echo make clean"
     }
+}
+
+environments.each {
+	stage('test-${it}'){
+		echo it
+		echo blueOrGreen(urlMap, it)
+	}
 }
