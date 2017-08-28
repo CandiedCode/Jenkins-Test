@@ -38,7 +38,7 @@ node {
 
 	if (environments.size() > 0) {
 		withCredentials([usernamePassword(credentialsId: dockerhub_candiedcode, usernameVariable: 'username', passwordVariable: 'password')]) {
-			make login DOCKERLOGIN=${username} DOCKERPASSWORD=${password}
+			sh "echo make login DOCKERLOGIN=${username} DOCKERPASSWORD=${password}"
 		}
 
 		stage('build and deploy'){
@@ -53,6 +53,7 @@ node {
 	        sh "echo APPNAME=api make build-package"
 		}
 	}
+
 	stage('Clean') {
 		sh "make logout"
     	sh "make clean"
