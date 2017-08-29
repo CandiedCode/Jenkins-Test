@@ -87,7 +87,7 @@ environments.each {
 			}
 
 			dir("ansible/Makefiles") {
-				def buildEnvironment = ${it}-${buildColor}
+				def buildEnvironment = "${it}-${buildColor}"
 	            stage('Create Infrastructure') {
 	                sh "echo make --file Makefile.arsenal build"
 	                sh "echo make --file Makefile.arsenal base_layer BUILD_ENVIRONMENT=${buildEnvironment} ACTION=create"
