@@ -78,7 +78,7 @@ environments.each {
 		node {
 			stage('build infrastructure image'){
 				unstash "ts-provisioning-${env.BRANCH_NAME}"
-				sh "make --file Makefile.arsenal build"
+				
 				blueGreenMap = blueOrGreen(urlMap, it)
 
 				echo blueGreenMap['current']
@@ -87,6 +87,7 @@ environments.each {
 
 			dir("ansible/Makefiles") {
 	            stage('Create Infrastructure') {
+	            	sh "echo make --file Makefile.arsenal build"
 	                sh "echo make --file Makefile.arsenal build"
 	                sh "echo make --file Makefile.arsenal base_layer BUILD_ENVIRONMENT=tstest ACTION=create"
 	                sh "echo make --file Makefile.arsenal network_layer BUILD_ENVIRONMENT=tstest ACTION=create"
