@@ -1,18 +1,23 @@
 //this requires staticMethod org.codehaus.groovy.runtime.DefaultGroovyMethods execute java.lang.String
 def call(URLs, environmentName) {
+	def blueGreenMap[:]
 	if(URLs.containsKey(environmentName))
 	{
 		command = "dig +noall +answer ${URLs[environmentName]} CNAME +short".toString()
 		output = command.execute().text
 
 		if (output.contains('blue')) {
-			'blue'
+			map['current'] = 'blue'
+			map['build'] = 'green'
 		} else if (output.contains('green')) {
-			'green'
+			map['current'] = 'green'
+			map['build'] = 'blue'
 		} else {
-			'unknown'
+			map['current'] = 'unknown'
+			map['build'] = 'unknown'
 		}
 	} else {
-		'unknown'
+		map['current'] = 'unknown'
+		map['build'] = 'unknown'
 	}
 }
