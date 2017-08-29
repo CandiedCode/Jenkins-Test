@@ -1,4 +1,5 @@
 //this requires staticMethod org.codehaus.groovy.runtime.DefaultGroovyMethods execute java.lang.String
+@NonCPS
 def call(URLs, environmentName) {
 	def blueGreenMap[:]
 	if(URLs.containsKey(environmentName))
