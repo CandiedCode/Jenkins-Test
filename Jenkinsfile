@@ -1,6 +1,6 @@
 #!/usr/bin/groovy
 properties([
-	buildDiscarder(logRotator(artifactDaysToKeepStr: '', artifactNumToKeepStr: '', daysToKeepStr: '', numToKeepStr: '2')), disableConcurrentBuilds(), 
+	buildDiscarder(logRotator(artifactDaysToKeepStr: '', artifactNumToKeepStr: '', daysToKeepStr: '', numToKeepStr: '12')), disableConcurrentBuilds(), 
 	parameters([booleanParam(defaultValue: true, description: 'true or false', name: 'Test')])])
 
 stage('setup'){
@@ -66,8 +66,31 @@ node {
 }
 
 environments.each {
-	stage('test-${it}'){
+	stage("test-${it}"){
 		echo it
 		echo blueOrGreen(urlMap, it)
 	}
 }
+
+def branches = [:]
+environments.each {
+ 	branches["${it}-Create Infrastructure"] = {
+ 		node {
+ 			stage("test-${it}"){
+				echo it
+				echo blueOrGreen(urlMap, it)
+			}
+
+			stage("test2-${it}"){
+				echo it
+				echo blueOrGreen(urlMap, it)
+			}
+
+			stage("test3-${it}"){
+				echo it
+				echo blueOrGreen(urlMap, it)
+			}
+ 		}
+ 	}	
+}
+parallel branches
