@@ -79,23 +79,24 @@ environments.each {
 			stage('build infrastructure image'){
 				unstash "ts-provisioning-${env.BRANCH_NAME}"
 				
-				blueGreenMap = blueOrGreen(urlMap, it)
+				currentColor = currentblueOrGreen(urlMap, it)
+				buildColor = buildBlueGreen(currentColor)
 
-				echo blueGreenMap['current']
-				echo blueGreenMap['build']
+				echo currentColor
+				echo buildColor
 			}
 
 			dir("ansible/Makefiles") {
+				def buildEnvironment = ${it}-${buildColor}
 	            stage('Create Infrastructure') {
-	            	sh "echo make --file Makefile.arsenal build"
 	                sh "echo make --file Makefile.arsenal build"
-	                sh "echo make --file Makefile.arsenal base_layer BUILD_ENVIRONMENT=tstest ACTION=create"
-	                sh "echo make --file Makefile.arsenal network_layer BUILD_ENVIRONMENT=tstest ACTION=create"
-	                sh "echo make --file Makefile.arsenal elk_layer BUILD_ENVIRONMENT=tstest ACTION=create"
-	                sh "echo make --file Makefile.arsenal eb_layer BUILD_ENVIRONMENT=tstest ACTION=create"
-	                sh "echo make --file Makefile.arsenal monitoring_layer BUILD_ENVIRONMENT=tstest ACTION=create"
-	                sh "echo make --file Makefile.arsenal rabbit_deploy BUILD_ENVIRONMENT=tstest ACTION=create"
-	                sh "echo make --file Makefile.arsenal monitoring_layer BUILD_ENVIRONMENT=tstest ACTION=create"
+	                sh "echo make --file Makefile.arsenal base_layer BUILD_ENVIRONMENT=${buildEnvironment} ACTION=create"
+	                sh "echo make --file Makefile.arsenal network_layer BUILD_ENVIRONMENT=${buildEnvironment} ACTION=create"
+	                sh "echo make --file Makefile.arsenal elk_layer BUILD_ENVIRONMENT=${buildEnvironment} ACTION=create"
+	                sh "echo make --file Makefile.arsenal eb_layer BUILD_ENVIRONMENT=${buildEnvironment} ACTION=create"
+	                sh "echo make --file Makefile.arsenal monitoring_layer BUILD_ENVIRONMENT=${buildEnvironment} ACTION=create"
+	                sh "echo make --file Makefile.arsenal rabbit_deploy BUILD_ENVIRONMENT=${buildEnvironment} ACTION=create"
+	                sh "echo make --file Makefile.arsenal monitoring_layer BUILD_ENVIRONMENT=${buildEnvironment} ACTION=create"
 	            }
 			}
 		}
